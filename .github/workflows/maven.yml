@@ -10,46 +10,46 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK
-      uses: actions/setup-java@v3
-      with:
-        java-version: '22'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B package -DskipTests --file pom.xml
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '22'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: mvn -B package -DskipTests --file pom.xml
 
   quality:
     needs: build
     runs-on: ubuntu-latest
-    steps:    
-    - uses: actions/checkout@v4 
-    - name: Set up JDK
-      uses: actions/setup-java@v3
-      with:
-        java-version: '22'
-        distribution: 'temurin'
-        cache: maven
-    - name: Check Code Quality
-      run: mvn -B checkstyle:check
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '22'
+          distribution: 'temurin'
+          cache: maven
+      - name: Check Code Quality
+        run: mvn -B checkstyle:check
 
   test:
     needs: quality
     runs-on: ubuntu-latest
-    steps:    
-    - uses: actions/checkout@v4 
-    - name: Set up JDK
-      uses: actions/setup-java@v3
-      with:
-        java-version: '22'
-        distribution: 'temurin'
-        cache: maven
-    - name: Run Tests
-      run: mvn -B test  
-    - name: Archive test results
-      if: failure() || success()
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-results
-        path: target/surefire-reports/*
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '22'
+          distribution: 'temurin'
+          cache: maven
+      - name: Run Tests
+        run: mvn -B test
+      - name: Archive test results
+        if: failure() || success()
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: target/surefire-reports/*
