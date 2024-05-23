@@ -33,7 +33,6 @@ jobs:
         cache: maven
     - name: Check Code Quality
       run: mvn -B checkstyle:check
-      continue-on-error: true
 
   test:
     needs: quality
@@ -49,6 +48,7 @@ jobs:
     - name: Run Tests
       run: mvn -B test  
     - name: Archive test results
+      if: failure() || success()
       uses: actions/upload-artifact@v2
       with:
         name: test-results
