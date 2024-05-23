@@ -13,7 +13,7 @@ class TwoSumTest {
         int target = 9;
 
         // When
-        int[] result = TwoSum.solution(nums, target);
+        int[] result = TwoSum.twoSum(nums, target);
 
         // Then
         assertThat(result).isEqualTo(new int[]{0, 1});
@@ -26,7 +26,7 @@ class TwoSumTest {
         int target = 6;
 
         // When
-        int[] result = TwoSum.solution(nums, target);
+        int[] result = TwoSum.twoSum(nums, target);
 
         // Then
         assertThat(result).isEqualTo(new int[]{1, 2});
@@ -39,7 +39,7 @@ class TwoSumTest {
         int target = 6;
 
         // When
-        int[] result = TwoSum.solution(nums, target);
+        int[] result = TwoSum.twoSum(nums, target);
 
         // Then
         assertThat(result).isEqualTo(new int[]{0, 1});
