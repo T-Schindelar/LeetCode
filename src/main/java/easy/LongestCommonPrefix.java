@@ -1,7 +1,5 @@
 package easy;
 
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * Write a function to find the longest common prefix string amongst an array of
  * strings.
@@ -20,8 +18,25 @@ import org.apache.commons.lang3.StringUtils;
 public class LongestCommonPrefix {
 
     public static String longestCommonPrefix(String[] strs) {
-
-
-        return StringUtils.EMPTY;
+        String prefix = strs[0];
+        for (int i = 1; i < strs.length; i++) {
+            if (prefix.isEmpty()) {
+                return prefix;
+            }
+            String str = strs[i];
+            // swap if shorter
+            if (str.length() < prefix.length()) {
+                String tmp = prefix;
+                prefix = str;
+                str = tmp;
+            }
+            for (int j = 0; j < prefix.length(); j++) {
+                if (prefix.charAt(j) != str.charAt(j)) {
+                    prefix = prefix.substring(0, j);
+                    break;
+                }
+            }
+        }
+        return prefix;
     }
 }
