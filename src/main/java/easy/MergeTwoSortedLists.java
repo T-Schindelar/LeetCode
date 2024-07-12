@@ -20,15 +20,15 @@ public class MergeTwoSortedLists {
         if (list1 == null && list2 == null) {
             return null;
         } else if (list2 == null) {
-            return new ListNode(list1.val);
+            return new ListNode(list1.val, mergeTwoLists(list1.next, null));
         } else if (list1 == null) {
-            return new ListNode(list2.val);
+            return new ListNode(list2.val, mergeTwoLists(null, list2.next));
         }
-
-        return new ListNode(Math.min(list1.val, list2.val),
-                new ListNode(Math.max(list1.val, list2.val),
-                        mergeTwoLists(list1.next, list2.next)));
+        if (list1.val <= list2.val) {
+            return new ListNode(list1.val, mergeTwoLists(list1.next, list2));
+        } else {
+            return new ListNode(list2.val, mergeTwoLists(list1, list2.next));
+        }
     }
-
 }
 
