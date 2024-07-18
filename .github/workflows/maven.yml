@@ -48,7 +48,7 @@ jobs:
       - name: Run Tests
         run: mvn -B test
       - name: Test Report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@latest
         if: success() || failure()
         with:
           name: JUnit Tests
