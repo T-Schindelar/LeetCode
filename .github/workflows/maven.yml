@@ -53,11 +53,11 @@ jobs:
         with:
           name: test-results
           path: target/surefire-reports/*
-      - name: Test Report
-        uses: dorny/test-reporter@v1
-        if: success() || failure()
-        with:
-          artifact: test-results
-          name: JUnit Tests
-          path: '*.xml'
-          reporter: java-junit
+      # - name: Test Report
+      #   uses: dorny/test-reporter@v1
+      #   if: success() || failure()
+      #   with:
+      #     artifact: test-results
+      #     name: JUnit Tests
+      #     path: '*.xml'
+      #     reporter: java-junit
